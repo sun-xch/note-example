@@ -10,11 +10,11 @@ spring:
     username: root
     password: root
 
-#mybatisµÄÏà¹ØÅäÖÃ
+#mybatisçš„ç›¸å…³é…ç½®
 mybatis:
-  #mapperÅäÖÃÎÄ¼ş
+  #mapperé…ç½®æ–‡ä»¶
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.example.business.sys.entity
-  #¿ªÆôÍÕ·åÃüÃû
+  #å¼€å¯é©¼å³°å‘½å
   configuration:
     map-underscore-to-camel-case: true
