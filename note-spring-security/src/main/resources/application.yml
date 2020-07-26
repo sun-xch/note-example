@@ -1,5 +1,8 @@
 server:
   port: 8080
+  servlet:
+    session:
+      timeout: 10s
 
 spring:
   datasource:
@@ -7,6 +10,11 @@ spring:
     url: jdbc:mysql://localhost:3306/example_data?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password: root
+  security:
+    loginType: JSON
+    user:
+      name: admin
+      password: admin
 
 #mybatis的相关配置
 mybatis:
