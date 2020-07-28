@@ -16,14 +16,24 @@ public class SecurityController {
         return "index";
     }
 
-    @GetMapping("biz1")
+    @GetMapping("/biz1")
     public String biz1(){
         return "biz1";
     }
 
-    @GetMapping("biz2")
+    @GetMapping("/biz2")
     public String biz2(){
         return "biz2";
+    }
+
+    @GetMapping("/sysLog")
+    public String sysLog(){
+        return "sysLog";
+    }
+
+    @GetMapping("/sysUser")
+    public String sysUser(){
+        return "sysUser";
     }
 
 }

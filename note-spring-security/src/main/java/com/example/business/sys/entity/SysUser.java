@@ -9,9 +9,17 @@ public class SysUser implements Serializable {
 
     private String uuid;
 
+    private String roleId;
+
+    private String orgId;
+
     private String userName;
 
     private String password;
+
+    private String phone;
+
+    private String mail;
 
     private String name;
 
@@ -35,6 +43,22 @@ public class SysUser implements Serializable {
         this.uuid = uuid;
     }
 
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(String orgId) {
+        this.orgId = orgId;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -49,6 +73,22 @@ public class SysUser implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getName() {

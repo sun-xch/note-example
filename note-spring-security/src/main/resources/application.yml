@@ -12,9 +12,6 @@ spring:
     password: root
   security:
     loginType: JSON
-    user:
-      name: admin
-      password: admin
 
 #mybatis的相关配置
 mybatis:

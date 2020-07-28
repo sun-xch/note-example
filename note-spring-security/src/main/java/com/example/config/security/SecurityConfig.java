@@ -1,9 +1,13 @@
 package com.example.config.security;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.Resource;
 
@@ -16,6 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
 
+    @Resource
+    private MyUserDetailsService myUserDetailsService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().formLogin()
@@ -27,6 +34,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests() //下面的都是授权的配置
                 .antMatchers("/login.html","/login").permitAll()//不要登录认证的请求
+                .antMatchers("/biz1","biz2")//需要对外暴露的资源路径
+                .hasAnyAuthority("ROLE_user","ROLE_admin")//user角色 和 admin角色都可以访问
+                .antMatchers("/sysLog").hasAnyAuthority("sys:log")
+                .antMatchers("/sysUser").hasAnyAuthority("/sysUser")
                 .anyRequest() //任何请求
                 .authenticated() //访问任何资源都需要身份认证
                 .and()
@@ -38,6 +49,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .expiredSessionStrategy(new MyExpiredSessionStrategy());//session超时策略
                 //.and()
                 //.csrf().disable();//跨站请求伪造防护 关闭
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(myUserDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
 }
