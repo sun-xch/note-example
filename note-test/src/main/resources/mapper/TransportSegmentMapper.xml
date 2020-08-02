@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.AudioMedia.dao.TransportSegmentDao">
+
+    <insert id="saveSegments">
+        INSERT INTO open_segment(
+        uuid,
+        file_name,
+        bytes,
+        create_time
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.uuid},
+            #{item.filename},
+            #{item.bytes},
+            #{item.createTime}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

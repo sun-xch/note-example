@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.AudioMedia.dao.PlayListDao">
+
+    <insert id="savePlayList" useGeneratedKeys="true" keyProperty="id">
+        insert into open_playlist(uuid, duration, context, create_time)
+        values (#{uuid}, #{duration}, #{context}, #{createTime})
+    </insert>
+
+</mapper>
