@@ -19,4 +19,9 @@ public class SysUserServiceImpl implements SysUserService {
     public List<SysUser> selectAllUser(SysUser sysUser) {
         return sysUserDao.selectAllUser(sysUser);
     }
+
+    @Override
+    public List<String> findUrlByUserName(String userName) {
+        return sysUserDao.findUrlByUserName(userName);
+    }
 }

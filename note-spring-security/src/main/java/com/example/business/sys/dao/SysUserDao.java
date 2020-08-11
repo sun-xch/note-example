@@ -12,4 +12,6 @@ public interface SysUserDao {
     public MyUserDetails selectUser(SysUser sysUser);
 
     public List<SysUser> selectAllUser(SysUser sysUser);
+
+    public List<String> findUrlByUserName(String userName);
 }

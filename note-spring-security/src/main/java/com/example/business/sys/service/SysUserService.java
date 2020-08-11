@@ -8,4 +8,6 @@ public interface SysUserService {
 
     public List<SysUser> selectAllUser(SysUser sysUser);
 
+    public List<String> findUrlByUserName(String userName);
+
 }

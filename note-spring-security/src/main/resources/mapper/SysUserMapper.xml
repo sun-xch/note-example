@@ -16,4 +16,16 @@
         SELECT * FROM sys_user
     </select>
 
+    <select id="findUrlByUserName" resultType="String" parameterType="String">
+        SELECT
+            sm.url
+        FROM
+            sys_menu sm
+        LEFT JOIN sys_role_menu srm ON srm.menu_id = sm.uuid
+        LEFT JOIN sys_role sr ON sr.uuid = srm.role_id
+        LEFT JOIN sys_user_role sur ON sur.role_id = sr.uuid
+        LEFT JOIN sys_user su ON su.uuid = sur.user_id
+        where user_name = #{userName}
+    </select>
+
 </mapper>
