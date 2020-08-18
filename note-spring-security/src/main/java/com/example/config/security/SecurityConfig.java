@@ -1,5 +1,6 @@
 package com.example.config.security;
 
+import com.example.config.filter.CaptchaCodeFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -18,6 +20,9 @@ import javax.sql.DataSource;
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)//开启方法认证  在方法中加注解
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Resource
+    private CaptchaCodeFilter captchaCodeFilter;
 
     @Resource
     private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
@@ -36,7 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.logout()
+        http.addFilterBefore(captchaCodeFilter, UsernamePasswordAuthenticationFilter.class)
+                .logout()
                 .logoutSuccessHandler(myLogoutSuccessHandler)
                 .and().rememberMe()//密码记住我配置
                 .tokenValiditySeconds(2*24*60*60)//记住密码令牌有效期 2天

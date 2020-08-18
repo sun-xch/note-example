@@ -1,5 +1,6 @@
 package com.example.business.common.controller;
 
+import com.example.business.common.contants.MyContants;
 import com.example.business.common.entity.CaptchaImageVo;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class CaptchaController {
 
         String text = defaultKaptcha.createText();
         //60秒内有效
-        session.setAttribute("kaptcha_key",new CaptchaImageVo(text,90));
+        session.setAttribute(MyContants.CAPTCHA_SESSION_KEY,new CaptchaImageVo(text,90));
 
         ServletOutputStream outputStream = null;
         try {

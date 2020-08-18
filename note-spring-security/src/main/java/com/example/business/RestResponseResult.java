@@ -27,6 +27,14 @@ public class RestResponseResult {
         return restResponseResult;
     }
 
+    public static RestResponseResult error(String message){
+        RestResponseResult restResponseResult = new RestResponseResult();
+        restResponseResult.setSuccess(false);
+        restResponseResult.setCode(400);
+        restResponseResult.setMessage(message);
+        return restResponseResult;
+    }
+
     public String getMessage() {
         return message;
     }
