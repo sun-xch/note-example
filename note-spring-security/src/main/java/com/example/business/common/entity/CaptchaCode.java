@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 /**
  * 验证码实体
  */
-public class CaptchaImageVo {
+public class CaptchaCode {
 
     private String code;
 
@@ -16,7 +16,7 @@ public class CaptchaImageVo {
      * @param code
      * @param expireAfterSeconds
      */
-    public CaptchaImageVo(String code, int expireAfterSeconds){
+    public CaptchaCode(String code, int expireAfterSeconds){
         this.code = code;
         this.expireTime = LocalDateTime.now().plusSeconds(expireAfterSeconds);
     }

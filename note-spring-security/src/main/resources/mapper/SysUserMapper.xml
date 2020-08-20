@@ -9,7 +9,7 @@
         FROM
             sys_user
         WHERE
-            user_name = #{userName}
+            user_name = #{userName} or phone = #{phone}
     </select>
 
     <select id="selectAllUser" resultType="com.example.business.sys.entity.SysUser" parameterType="com.example.business.sys.entity.SysUser">

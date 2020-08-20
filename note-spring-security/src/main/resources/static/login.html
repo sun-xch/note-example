@@ -12,6 +12,25 @@
         }
     };
     console.log(new Date());
+
+    function getSmsCode(){
+        //发送异步请求
+        //1.创建ajax引擎对象----所有操作都是由ajax引擎完成
+        var xmlHttp = new XMLHttpRequest();
+        //2.为引擎对象绑定监听事件
+        xmlHttp.onreadystatechange = function() {
+            //当状态变化时处理的事情
+            var data = xmlHttp.responseText;
+            alert(data);
+        }
+        //3.绑定服务器地址
+        //第一个参数：请求方式GET/POST
+        //第二个参数：后台服务器地址
+        //第三个参数：是否是异步 true--异步   false--同步
+        xmlHttp.open("GET", "/getSmsCode?phone=13050571762", true);
+        //4.发送请求
+        xmlHttp.send();
+    }
 </script>
 <body>
     <h2>自定义登录页面</h2>
@@ -26,5 +45,19 @@
         <label><input type="checkbox" name="remember-me"/>记住密码</label>
         <button type="submit">登录</button>
     </form>
+
+    <br>
+    <br>
+
+    <h2>短信登录</h2>
+    <form action="/smslogin" method="post">
+        手机号码：<input type="text" name="phone" id="phone">
+        <br>
+        短信验证码：<input type="text" name="smsCode" id="smsCode">
+        <input type="button" onclick="getSmsCode()" value="发送验证码">
+        <br>
+        <input type="button" onclick="smslogin()" value="登录">
+    </form>
+
 </body>
 </html>

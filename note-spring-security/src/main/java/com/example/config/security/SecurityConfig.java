@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(myAuthenticationFailureHandler)//登录请求失败后的自定义处理逻辑
                 .and()
                 .authorizeRequests() //下面的都是授权的配置
-                .antMatchers("/login.html","/login","/captcha").permitAll()//不要登录认证的请求
+                .antMatchers("/login.html","/login","/captcha","/getSmsCode","/getSmsCode").permitAll()//不要登录认证的请求
                 .antMatchers("/index").authenticated()//登录就可以访问 不需要权限认证
                 //.antMatchers("/system/*").access("hasRole('admin') or hasAnyAuthority('ROLE_admin')")
                 .anyRequest().access("@rbacService.hasPermssion(request,authentication)")//资源校验
