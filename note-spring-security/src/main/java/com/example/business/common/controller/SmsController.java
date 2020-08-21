@@ -27,7 +27,7 @@ public class SmsController {
     public RestResponseResult getSmsCode(@RequestParam String phone, HttpSession session){
 
         SysUser sysUser = new SysUser();
-        sysUser.setPhone(phone);
+        sysUser.setUserName(phone);
         MyUserDetails myUserDetails = sysUserService.selectUser(sysUser);
         if(myUserDetails == null){
             return RestResponseResult.error("你输入的手机号未注册");

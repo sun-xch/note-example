@@ -9,7 +9,7 @@
         FROM
             sys_user
         WHERE
-            user_name = #{userName} or phone = #{phone}
+            user_name = #{userName} or phone = #{userName}
     </select>
 
     <select id="selectAllUser" resultType="com.example.business.sys.entity.SysUser" parameterType="com.example.business.sys.entity.SysUser">
@@ -25,7 +25,7 @@
         LEFT JOIN sys_role sr ON sr.uuid = srm.role_id
         LEFT JOIN sys_user_role sur ON sur.role_id = sr.uuid
         LEFT JOIN sys_user su ON su.uuid = sur.user_id
-        where user_name = #{userName}
+        where user_name = #{userName} or phone = #{userName}
     </select>
 
 </mapper>

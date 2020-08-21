@@ -110,7 +110,7 @@ public class TestFFmpegWrapper {
                  */
                 .setAudioBitRate(audioStream.isPresent() ? audioStream.get().bit_rate : 0)
                 /**
-                 * 设置音频频道书
+                 * 设置音频频道数
                  */
                 .setAudioChannels(1)
                 /**
@@ -118,7 +118,7 @@ public class TestFFmpegWrapper {
                  */
                 .setAudioCodec("aac")
                 /**
-                 *
+                 * 设置音频采样率
                  */
                 .setAudioSampleRate(audioStream.get().sample_rate)
                 .setAudioBitRate(audioStream.get().bit_rate)

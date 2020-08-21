@@ -39,6 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private DataSource dataSource;
 
+    @Resource
+    private SmsCodeSecurityConfig smsCodeSecurityConfig;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.addFilterBefore(captchaCodeFilter, UsernamePasswordAuthenticationFilter.class)
@@ -53,9 +56,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.defaultSuccessUrl("/index")//登录成功后跳转到哪个页面
                 .successHandler(myAuthenticationSuccessHandler)//登录请求成功后的自定义处理逻辑
                 .failureHandler(myAuthenticationFailureHandler)//登录请求失败后的自定义处理逻辑
-                .and()
+                .and().apply(smsCodeSecurityConfig).and()//使smsCodeSecurityConfig配置生效
                 .authorizeRequests() //下面的都是授权的配置
-                .antMatchers("/login.html","/login","/captcha","/getSmsCode","/getSmsCode").permitAll()//不要登录认证的请求
+                .antMatchers("/login.html","/login","/captcha","/getSmsCode","/smslogin").permitAll()//不要登录认证的请求
                 .antMatchers("/index").authenticated()//登录就可以访问 不需要权限认证
                 //.antMatchers("/system/*").access("hasRole('admin') or hasAnyAuthority('ROLE_admin')")
                 .anyRequest().access("@rbacService.hasPermssion(request,authentication)")//资源校验
