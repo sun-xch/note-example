@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.business.business.sys.dao.SysUserDao">
+<mapper namespace="com.business.sys.dao.SysUserDao">
 
-    <select id="selectUser" resultType="com.business.config.security.MyUserDetails" parameterType="com.business.business.sys.entity.SysUser">
+    <select id="selectUser" resultType="com.business.config.security.MyUserDetails" parameterType="com.business.sys.entity.SysUser">
         SELECT
             user_name as username,
             password as password
@@ -12,7 +12,7 @@
             user_name = #{userName} or phone = #{userName}
     </select>
 
-    <select id="selectAllUser" resultType="com.business.business.sys.entity.SysUser" parameterType="com.business.business.sys.entity.SysUser">
+    <select id="selectAllUser" resultType="com.business.sys.entity.SysUser" parameterType="com.business.sys.entity.SysUser">
         SELECT * FROM sys_user
     </select>
 

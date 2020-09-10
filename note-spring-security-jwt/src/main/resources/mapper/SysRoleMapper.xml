@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.business.business.sys.dao.SysRoleDao">
+<mapper namespace="com.business.sys.dao.SysRoleDao">
 
-    <select id="selectRoleList" resultType="java.lang.String" parameterType="com.business.business.sys.entity.SysUser">
+    <select id="selectRoleList" resultType="java.lang.String" parameterType="com.business.sys.entity.SysUser">
         SELECT
             sr.role_code
         FROM

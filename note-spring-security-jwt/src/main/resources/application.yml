@@ -1,8 +1,5 @@
 server:
-  port: 8080
-  servlet:
-    session:
-      timeout: 10s
+  port: 8081
 
 spring:
   datasource:
@@ -17,7 +14,11 @@ spring:
 mybatis:
   #mapper配置文件
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.business.sys.entity
+  type-aliases-package: com.example.business.sys.entity
   #开启驼峰命名
   configuration:
     map-underscore-to-camel-case: true
+jwt:
+  secret: 123qwe
+  expiration: 3600000
+  header: JWTHeaderName
