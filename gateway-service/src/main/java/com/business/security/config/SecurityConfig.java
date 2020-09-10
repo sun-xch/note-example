@@ -38,9 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .deleteCookies("JSESSIONID") //在登出同时清除cookies
                 .and()
-                .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/**").authenticated()
+                .authorizeRequests()// 授权配置
+                .antMatchers("/login").permitAll()//无需权限访问
+                .anyRequest().authenticated()//其他接口需要登录后才能访问
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);//无状态 不用session
