@@ -18,3 +18,8 @@ mybatis:
   #开启驼峰命名
   configuration:
     map-underscore-to-camel-case: true
+
+jwt:
+  secret: 123qwe
+  expiration: 3600000
+  header: JWTHeaderName
