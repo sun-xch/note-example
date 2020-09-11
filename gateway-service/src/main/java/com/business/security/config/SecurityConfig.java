@@ -46,8 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //                .ignoringAntMatchers("/login")
 //                .and()
-//                .cors() //允许跨域访问
-//                .and()
+                .cors() //允许跨域访问
+                .and()
                 .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout()
                 .logoutSuccessHandler(myLogoutSuccessHandler)
