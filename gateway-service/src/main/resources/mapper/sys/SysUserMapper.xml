@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.business.security.business.dao.UserDetailsDao">
+<mapper namespace="com.business.sys.dao.SysUserDao">
 
-    <select id="selectUserByUsername" resultType="com.business.security.business.dto.UserDetailsDto">
+    <select id="info" resultType="com.business.sys.entity.SysUser" parameterType="com.business.sys.entity.SysUser">
         SELECT
-            username as username,
-            password as password
+            username,
+            phone,
+            name as name
         FROM
             sys_user
         WHERE

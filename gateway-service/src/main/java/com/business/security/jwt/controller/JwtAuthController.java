@@ -37,7 +37,7 @@ public class JwtAuthController {
         }
     }
 
-    @RequestMapping(value = "/refreshToken")
+    @RequestMapping(value = "/resetToken")
     public RestResult refresh(@RequestHeader("${jwt.header}") String token){
         return RestResult.success(jwtAuthService.refreshToken(token));
     }

@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class JwtAuthService {
@@ -28,7 +30,7 @@ public class JwtAuthService {
      * 登录认证换取JWT令牌
      * @return
      */
-    public String login(String username, String password) throws Exception {
+    public Map<String,Object> login(String username, String password) throws Exception {
         try{
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
             Authentication authenticate = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
@@ -37,7 +39,10 @@ public class JwtAuthService {
             throw new Exception();
         }
         UserDetails userDetails = myUserDetailsService.loadUserByUsername(username);
-        return jwtTokenUtil.generateToken(userDetails);
+        String token = jwtTokenUtil.generateToken(userDetails);
+        Map<String,Object> result = new HashMap();
+        result.put("token",token);
+        return result;
     }
 
     public String refreshToken(String oldToken){

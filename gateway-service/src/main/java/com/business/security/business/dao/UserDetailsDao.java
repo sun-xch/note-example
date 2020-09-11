@@ -4,7 +4,7 @@ import com.business.security.business.dto.UserDetailsDto;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SysUserDao {
+public interface UserDetailsDao {
 
     public UserDetailsDto selectUserByUsername(String userName);
 }
