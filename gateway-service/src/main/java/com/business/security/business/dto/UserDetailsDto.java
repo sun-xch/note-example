@@ -1,4 +1,4 @@
-package com.business.security.dto;
+package com.business.security.business.dto;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

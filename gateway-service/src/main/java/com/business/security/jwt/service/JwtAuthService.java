@@ -1,7 +1,7 @@
 package com.business.security.jwt.service;
 
 import com.business.common.utils.JwtTokenUtil;
-import com.business.security.service.MyUserDetailsService;
+import com.business.security.business.service.MyUserDetailsService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

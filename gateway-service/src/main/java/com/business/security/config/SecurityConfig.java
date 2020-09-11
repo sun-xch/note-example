@@ -1,7 +1,9 @@
 package com.business.security.config;
 
 import com.business.security.filter.JwtAuthenticationTokenFilter;
-import com.business.security.service.MyUserDetailsService;
+import com.business.security.handler.MyLogoutSuccessHandler;
+import com.business.security.business.service.MyUserDetailsService;
+import com.business.security.sms.SmsCodeSecurityConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,15 +33,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
+    @Resource
+    private SmsCodeSecurityConfig smsCodeSecurityConfig;
+
+    @Resource
+    private MyLogoutSuccessHandler myLogoutSuccessHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout()
+                .logoutSuccessHandler(myLogoutSuccessHandler)
                 .deleteCookies("JSESSIONID") //在登出同时清除cookies
                 .and()
+                .apply(smsCodeSecurityConfig)//使smsCodeSecurityConfig配置生效
+                .and()
                 .authorizeRequests()// 授权配置
-                .antMatchers("/login").permitAll()//无需权限访问
+                .antMatchers("/login","/smslogin").permitAll()//无需权限访问
                 .anyRequest().authenticated()//其他接口需要登录后才能访问
                 .and()
                 .sessionManagement()

@@ -1,6 +1,6 @@
-package com.business.security.dao;
+package com.business.security.business.dao;
 
-import com.business.security.dto.UserDetailsDto;
+import com.business.security.business.dto.UserDetailsDto;
 import org.springframework.stereotype.Repository;
 
 @Repository
