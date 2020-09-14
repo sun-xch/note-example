@@ -22,4 +22,4 @@ mybatis:
 jwt:
   secret: 123qwe
   expiration: 3600000
-  header: JWTHeaderName
+  header: X-Token
