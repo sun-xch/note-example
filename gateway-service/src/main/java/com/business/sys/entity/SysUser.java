@@ -25,7 +25,11 @@ public class SysUser implements Serializable {
 
     private String sex;
 
+    private String avatar;
+
     private String remarks;
+
+    private String enabled;
 
     private Date createTime;
 
@@ -107,12 +111,28 @@ public class SysUser implements Serializable {
         this.sex = sex;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     public String getRemarks() {
         return remarks;
     }
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public String getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(String enabled) {
+        this.enabled = enabled;
     }
 
     public Date getCreateTime() {

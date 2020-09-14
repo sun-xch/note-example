@@ -13,4 +13,21 @@
             username = #{username} or phone = #{username}
     </select>
 
+    <select id="getUserList" resultType="com.business.sys.dto.SysUserDto" parameterType="com.business.sys.dto.SysUserDto">
+        SELECT
+            uuid,
+            role_id,
+            org_id,
+            username,
+            phone,
+            mail,
+            name,
+            sex,
+            avatar,
+            remarks,
+            enabled
+        FROM
+            sys_user
+    </select>
+
 </mapper>
