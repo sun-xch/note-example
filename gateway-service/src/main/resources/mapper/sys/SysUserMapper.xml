@@ -30,4 +30,25 @@
             sys_user
     </select>
 
+    <insert id="addSingleUser" parameterType="com.business.sys.entity.SysUser">
+        INSERT INTO sys_user ( uuid, username, password, phone, name ) SELECT
+            #{uuid},
+            #{username},
+            #{password},
+            #{phone},
+            #{name}
+        FROM
+            sys_user
+        WHERE
+            NOT EXISTS (
+            SELECT
+                username,
+                phone
+            FROM
+                sys_user
+            WHERE
+            username = #{username}
+            OR phone = #{phone})
+    </insert>
+
 </mapper>

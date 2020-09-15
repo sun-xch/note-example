@@ -12,4 +12,6 @@ public interface SysUserDao {
     public SysUser info(SysUser sysUser);
 
     public List<SysUserDto> getUserList(SysUserDto sysUserDto);
+
+    public int addSingleUser(SysUser sysUser);
 }

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -39,6 +38,12 @@ public class SysUserController {
     @RequestMapping("/getUserList")
     public RestTableResult<SysUserDto> getUserList(@RequestBody SysUserDto sysUserDto){
         return sysUserService.getUserList(sysUserDto);
+    }
+
+    @RequestMapping("/addSingleUser")
+    public RestResult addSingleUser(@RequestBody SysUserDto sysUserDto){
+        sysUserService.addSingleUser(sysUserDto);
+        return RestResult.success("");
     }
 
 }
