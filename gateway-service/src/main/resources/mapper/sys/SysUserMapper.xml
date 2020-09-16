@@ -4,6 +4,7 @@
 
     <select id="info" resultType="com.business.sys.entity.SysUser" parameterType="com.business.sys.entity.SysUser">
         SELECT
+            uuid,
             username,
             phone,
             name as name

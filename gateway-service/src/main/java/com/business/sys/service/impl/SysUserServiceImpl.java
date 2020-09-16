@@ -6,7 +6,6 @@ import com.business.sys.dao.SysUserDao;
 import com.business.sys.dto.SysUserDto;
 import com.business.sys.entity.SysUser;
 import com.business.sys.service.ISysUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,7 @@ public class SysUserServiceImpl implements ISysUserService {
     @Resource
     PasswordEncoder passwordEncoder;
 
-    @Autowired
+    @Resource
     private SysUserDao sysUserDao;
 
     @Override
