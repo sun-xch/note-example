@@ -54,4 +54,11 @@ public class SysMenuServiceImpl implements ISysMenuService {
         }
         return resultList;
     }
+
+    @Override
+    public List<SysMenu> getMenu(SysMenu sysMenu) {
+        //默认只查询菜单
+        sysMenu.setType("1");
+        return sysMenuDao.getMenu(sysMenu);
+    }
 }

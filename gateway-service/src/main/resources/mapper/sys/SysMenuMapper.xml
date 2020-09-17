@@ -4,7 +4,23 @@
 
     <select id="getAuthMenu" resultType="com.business.sys.entity.SysMenu" parameterType="java.util.List">
         SELECT
-			*
+			uuid,
+			menu_pid,
+			menu_pids,
+			is_leaf,
+			code,
+			menu_name,
+			url,
+			icon,
+			level,
+			sort,
+			status,
+			description,
+			type,
+			create_time,
+			create_user_uuid,
+			update_time,
+			update_user_uuid
 		FROM
 			sys_menu
 		WHERE
@@ -20,5 +36,25 @@
 			</foreach>
 			)
     </select>
+
+	<select id="getMenu" resultType="com.business.sys.entity.SysMenu" parameterType="com.business.sys.entity.SysMenu">
+		SELECT
+			uuid,
+			menu_pid,
+			code,
+			menu_name,
+			url,
+			icon,
+			level,
+			sort,
+			description
+		FROM
+			sys_menu
+		<where>
+			<if test="type != null and type != ''">
+				type = #{type}
+			</if>
+		</where>
+	</select>
 
 </mapper>

@@ -1,5 +1,6 @@
 package com.business.sys.dao;
 
+import com.business.sys.entity.SysMenu;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,4 +10,6 @@ public interface SysMenuDao {
 
 
     public List getAuthMenu(List<String> roleIds);
+
+    public List<SysMenu> getMenu(SysMenu sysMenu);
 }
