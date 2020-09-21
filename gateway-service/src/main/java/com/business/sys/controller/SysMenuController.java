@@ -1,5 +1,6 @@
 package com.business.sys.controller;
 
+import com.business.common.rest.RestResult;
 import com.business.common.rest.RestTableResult;
 import com.business.common.rest.ResultCodeMsg;
 import com.business.common.utils.JwtTokenUtil;
@@ -37,6 +38,12 @@ public class SysMenuController {
     public RestTableResult<SysMenu> getMenu(@RequestBody SysMenu sysMenu){
         List<SysMenu> menu = sysMenuService.getMenu(sysMenu);
         return new RestTableResult<SysMenu>(ResultCodeMsg.SUCCESS.code(),ResultCodeMsg.SUCCESS.msg(),menu,Long.valueOf(menu.size()));
+    }
+
+    @RequestMapping("/saveMenu")
+    public RestResult<String> saveMenu(@RequestBody SysMenu sysMenu){
+        sysMenuService.saveMenu(sysMenu);
+        return RestResult.success("");
     }
 
 

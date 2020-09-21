@@ -12,4 +12,8 @@ public interface SysMenuDao {
     public List getAuthMenu(List<String> roleIds);
 
     public List<SysMenu> getMenu(SysMenu sysMenu);
+
+    public int insertMenu(SysMenu sysMenu);
+
+    public int updateMenu(SysMenu sysMenu);
 }

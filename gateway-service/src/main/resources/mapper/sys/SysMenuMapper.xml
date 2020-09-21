@@ -57,4 +57,62 @@
 		</where>
 	</select>
 
+	<insert id="insertMenu" parameterType="com.business.sys.entity.SysMenu">
+		INSERT INTO sys_menu (
+			uuid,
+			menu_pid,
+			menu_pids,
+			is_leaf,
+			code,
+			menu_name,
+			url,
+			icon,
+			level,
+			sort,
+			status,
+			description,
+			type,
+			create_time,
+			create_user_uuid
+		)
+		VALUES
+			(
+				#{uuid},
+				#{menuPid},
+				#{menuPids},
+				#{isLeaf},
+				#{code},
+				#{menuName},
+				#{url},
+				#{icon},
+				#{level},
+				#{sort},
+				#{status},
+				#{description},
+				#{type},
+				#{createTime},
+				#{createUserUuid}
+			)
+	</insert>
+
+	<update id="updateMenu" parameterType="com.business.sys.entity.SysMenu">
+		UPDATE sys_menu
+		SET menu_pid = #{menuPid},
+			menu_pids = #{menuPids},
+			is_leaf = #{isLeaf},
+			code = #{code},
+			menu_name = #{menuName},
+			url = #{url},
+			icon = #{icon},
+			level = #{level},
+			sort = #{sort},
+			status = #{status},
+			description = #{description},
+			type = #{type},
+			update_time = #{updateTime},
+			update_user_uuid = #{updateUserUuid}
+		WHERE
+			uuid = #{uuid}
+	</update>
+
 </mapper>

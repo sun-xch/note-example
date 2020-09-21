@@ -1,5 +1,6 @@
 package com.business.sys.service.impl;
 
+import com.business.common.utils.UUIDUtil;
 import com.business.sys.dao.SysMenuDao;
 import com.business.sys.dto.SysMenuDto;
 import com.business.sys.entity.SysMenu;
@@ -7,6 +8,7 @@ import com.business.sys.entity.SysUser;
 import com.business.sys.service.ISysMenuService;
 import com.business.sys.service.ISysRoleService;
 import com.business.sys.service.ISysUserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -60,5 +62,18 @@ public class SysMenuServiceImpl implements ISysMenuService {
         //默认只查询菜单
         sysMenu.setType("1");
         return sysMenuDao.getMenu(sysMenu);
+    }
+
+    @Override
+    public void saveMenu(SysMenu sysMenu) {
+        String uuid = sysMenu.getUuid();
+        if(StringUtils.isBlank(uuid)){
+            //新增数据
+            sysMenu.setUuid(UUIDUtil.get32UUID());
+            sysMenuDao.insertMenu(sysMenu);
+        }else{
+            //修改数据
+            sysMenuDao.updateMenu(sysMenu);
+        }
     }
 }

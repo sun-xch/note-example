@@ -10,4 +10,6 @@ public interface ISysMenuService {
     public List<SysMenuDto> getAuthMenu(String username);
 
     public List<SysMenu> getMenu(SysMenu sysMenu);
+
+    public void saveMenu(SysMenu sysMenu);
 }
