@@ -11,4 +11,27 @@
             user_id = #{uuid}
     </select>
 
+    <select id="getRoleList" resultType="com.business.sys.entity.SysRole" parameterType="com.business.sys.entity.SysRole">
+        SELECT
+            uuid,
+            role_code,
+            role_name,
+            role_desc,
+            sort,
+            create_time,
+            create_user_uuid,
+            update_time,
+            update_user_uuid
+        FROM
+            sys_role
+        <where>
+            <if test="roleCode != null and roleCode != ''">
+                role_code = #{roleCode}
+            </if>
+            <if test="roleName != null and roleName != ''">
+                role_name = #{roleName}
+            </if>
+        </where>
+    </select>
+
 </mapper>

@@ -1,6 +1,7 @@
 package com.business.sys.service.impl;
 
 import com.business.sys.dao.SysRoleDao;
+import com.business.sys.entity.SysRole;
 import com.business.sys.service.ISysRoleService;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,10 @@ public class SysRoleServiceImpl implements ISysRoleService {
     @Override
     public List<String> getRoleIdByUserId(String uuid) {
         return sysRoleDao.getRoleIdByUserId(uuid);
+    }
+
+    @Override
+    public List<SysRole> getRoleList(SysRole sysRole) {
+        return sysRoleDao.getRoleList(sysRole);
     }
 }
