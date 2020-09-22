@@ -12,4 +12,6 @@ public interface ISysMenuService {
     public List<SysMenu> getMenu(SysMenu sysMenu);
 
     public void saveMenu(SysMenu sysMenu);
+
+    public List<SysMenuDto> getMenuAndBindRole(SysMenuDto sysMenuDto);
 }

@@ -37,13 +37,13 @@ public class SysMenuServiceImpl implements ISysMenuService {
         //2.根据用户主键 获取用户所有的角色主键
         List<String> roleIds = sysRoleService.getRoleIdByUserId(info.getUuid());
         //3.根据角色主键 获取 所属的菜单信息
-        List<SysMenu> authMenu = sysMenuDao.getAuthMenu(roleIds);
+        List<SysMenuDto> authMenu = sysMenuDao.getAuthMenu(roleIds);
         List<SysMenuDto> sysMenuDtoList = menuListToTree(authMenu, "0");
         return sysMenuDtoList;
     }
 
     //递归List返回树状结构
-    public List<SysMenuDto> menuListToTree(List<SysMenu> menuList, String parentId){
+    public List<SysMenuDto> menuListToTree(List<SysMenuDto> menuList, String parentId){
         List<SysMenuDto> resultList = new ArrayList<>();
         for(SysMenu sysMenu : menuList){
             SysMenuDto sysMenuDto = new SysMenuDto();
@@ -75,5 +75,12 @@ public class SysMenuServiceImpl implements ISysMenuService {
             //修改数据
             sysMenuDao.updateMenu(sysMenu);
         }
+    }
+
+    @Override
+    public List<SysMenuDto> getMenuAndBindRole(SysMenuDto sysMenuDto) {
+        List<SysMenuDto> menuAndBindRole = sysMenuDao.getMenuAndBindRole(sysMenuDto);
+        List<SysMenuDto> sysMenuDtoList = menuListToTree(menuAndBindRole, "0");
+        return sysMenuDtoList;
     }
 }

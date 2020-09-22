@@ -46,5 +46,11 @@ public class SysMenuController {
         return RestResult.success("");
     }
 
+    @RequestMapping("/getMenuAndBindRole")
+    public RestTableResult<SysMenuDto> getMenuAndBindRole(@RequestBody SysMenuDto sysMenuDto){
+        List<SysMenuDto> menuAndBindRole = sysMenuService.getMenuAndBindRole(sysMenuDto);
+        return new RestTableResult<SysMenuDto>(ResultCodeMsg.SUCCESS.code(),ResultCodeMsg.SUCCESS.msg(),menuAndBindRole,Long.valueOf(menuAndBindRole.size()));
+    }
+
 
 }

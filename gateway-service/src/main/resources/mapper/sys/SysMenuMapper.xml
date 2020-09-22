@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.business.sys.dao.SysMenuDao">
 
-    <select id="getAuthMenu" resultType="com.business.sys.entity.SysMenu" parameterType="java.util.List">
+    <select id="getAuthMenu" resultType="com.business.sys.dto.SysMenuDto" parameterType="java.util.List">
         SELECT
 			uuid,
 			menu_pid,
@@ -114,5 +114,30 @@
 		WHERE
 			uuid = #{uuid}
 	</update>
+
+	<select id="getMenuAndBindRole" resultType="com.business.sys.dto.SysMenuDto" parameterType="com.business.sys.dto.SysMenuDto">
+		SELECT
+			sm.uuid,
+			sm.menu_pid,
+			sm.menu_pids,
+			sm.is_leaf,
+			sm.code,
+			sm.menu_name,
+			sm.url,
+			sm.icon,
+			sm.level,
+			sm.sort,
+			sm.status,
+			sm.description,
+			sm.type,
+			sm.create_time,
+			sm.create_user_uuid,
+			sm.update_time,
+			sm.update_user_uuid,
+			srm.uuid AS roleMenuId
+		FROM
+			sys_menu sm
+		LEFT JOIN sys_role_menu srm ON srm.role_id = #{roleId} AND srm.menu_id = sm.uuid
+	</select>
 
 </mapper>
