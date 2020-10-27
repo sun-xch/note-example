@@ -59,8 +59,8 @@ public class SysMenuServiceImpl implements ISysMenuService {
 
     @Override
     public List<SysMenu> getMenu(SysMenu sysMenu) {
-        //默认只查询菜单
-        sysMenu.setType("1");
+        //默认只查询非按钮
+        sysMenu.setType("3");
         return sysMenuDao.getMenu(sysMenu);
     }
 

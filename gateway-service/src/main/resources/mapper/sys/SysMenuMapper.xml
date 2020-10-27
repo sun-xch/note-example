@@ -52,7 +52,7 @@
 			sys_menu
 		<where>
 			<if test="type != null and type != ''">
-				type = #{type}
+				type != #{type}
 			</if>
 		</where>
 	</select>
