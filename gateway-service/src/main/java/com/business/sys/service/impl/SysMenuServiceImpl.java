@@ -29,7 +29,7 @@ public class SysMenuServiceImpl implements ISysMenuService {
     private SysMenuDao sysMenuDao;
 
     @Override
-    public List<SysMenuDto> getAuthMenu(String username) {
+    public List<SysMenuDto> getAuthMenu(String username, String parentId, String type) {
         //1.根据username获取用户主键
         SysUser sysUser = new SysUser();
         sysUser.setUsername(username);
@@ -37,8 +37,11 @@ public class SysMenuServiceImpl implements ISysMenuService {
         //2.根据用户主键 获取用户所有的角色主键
         List<String> roleIds = sysRoleService.getRoleIdByUserId(info.getUuid());
         //3.根据角色主键 获取 所属的菜单信息
-        List<SysMenuDto> authMenu = sysMenuDao.getAuthMenu(roleIds);
-        List<SysMenuDto> sysMenuDtoList = menuListToTree(authMenu, "0");
+        SysMenuDto sysMenuDto = new SysMenuDto();
+        sysMenuDto.setType(type);
+        sysMenuDto.setRoleIds(roleIds);
+        List<SysMenuDto> authMenu = sysMenuDao.getAuthMenu(sysMenuDto);
+        List<SysMenuDto> sysMenuDtoList = menuListToTree(authMenu, parentId);
         return sysMenuDtoList;
     }
 
@@ -58,10 +61,10 @@ public class SysMenuServiceImpl implements ISysMenuService {
     }
 
     @Override
-    public List<SysMenu> getMenu(SysMenu sysMenu) {
+    public List<SysMenu> getAllMenu(SysMenu sysMenu) {
         //默认只查询非按钮
         sysMenu.setType("3");
-        return sysMenuDao.getMenu(sysMenu);
+        return sysMenuDao.getAllMenu(sysMenu);
     }
 
     @Override

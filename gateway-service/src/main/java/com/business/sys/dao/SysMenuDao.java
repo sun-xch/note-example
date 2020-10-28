@@ -10,9 +10,9 @@ import java.util.List;
 public interface SysMenuDao {
 
 
-    public List<SysMenuDto> getAuthMenu(List<String> roleIds);
+    public List<SysMenuDto> getAuthMenu(SysMenuDto sysMenuDto);
 
-    public List<SysMenu> getMenu(SysMenu sysMenu);
+    public List<SysMenu> getAllMenu(SysMenu sysMenu);
 
     public int insertMenu(SysMenu sysMenu);
 

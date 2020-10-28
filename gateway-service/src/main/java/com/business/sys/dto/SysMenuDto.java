@@ -10,6 +10,8 @@ public class SysMenuDto extends SysMenu {
 
     private String roleMenuId;
 
+    private List<String> roleIds;
+
     private List<SysMenuDto> childMenu;
 
     public String getRoleId() {
@@ -26,6 +28,14 @@ public class SysMenuDto extends SysMenu {
 
     public void setRoleMenuId(String roleMenuId) {
         this.roleMenuId = roleMenuId;
+    }
+
+    public List<String> getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(List<String> roleIds) {
+        this.roleIds = roleIds;
     }
 
     public List<SysMenuDto> getChildMenu() {

@@ -26,17 +26,37 @@ public class SysMenuController {
     @Resource
     private ISysMenuService sysMenuService;
 
+    /**
+     * 查询 用户所属权限下所有以0为父节点的所有目录及菜单
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping("/getAuthMenu")
     public RestTableResult<SysMenuDto> getAuthMenu(HttpServletRequest request, HttpServletResponse response){
         String jwtToken = request.getHeader(jwtTokenUtil.getHeader());
         String username = jwtTokenUtil.getUsernameFromToken(jwtToken);
-        List<SysMenuDto> authMenu = sysMenuService.getAuthMenu(username);
+        List<SysMenuDto> authMenu = sysMenuService.getAuthMenu(username,"0","2");
         return new RestTableResult<SysMenuDto>(ResultCodeMsg.SUCCESS.code(),ResultCodeMsg.SUCCESS.msg(),authMenu,Long.valueOf(authMenu.size()));
     }
 
-    @RequestMapping("/getMenu")
-    public RestTableResult<SysMenu> getMenu(@RequestBody SysMenu sysMenu){
-        List<SysMenu> menu = sysMenuService.getMenu(sysMenu);
+    /**
+     * 查询 用户所属权限下所有以-1为父节点的所有目录及菜单
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("/getAuthAllMenu")
+    public RestTableResult<SysMenuDto> getAuthAllMenu(HttpServletRequest request, HttpServletResponse response){
+        String jwtToken = request.getHeader(jwtTokenUtil.getHeader());
+        String username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+        List<SysMenuDto> authMenu = sysMenuService.getAuthMenu(username,"-1","2");
+        return new RestTableResult<SysMenuDto>(ResultCodeMsg.SUCCESS.code(),ResultCodeMsg.SUCCESS.msg(),authMenu,Long.valueOf(authMenu.size()));
+    }
+
+    @RequestMapping("/getAllMenu")
+    public RestTableResult<SysMenu> getAllMenu(@RequestBody SysMenu sysMenu){
+        List<SysMenu> menu = sysMenuService.getAllMenu(sysMenu);
         return new RestTableResult<SysMenu>(ResultCodeMsg.SUCCESS.code(),ResultCodeMsg.SUCCESS.msg(),menu,Long.valueOf(menu.size()));
     }
 

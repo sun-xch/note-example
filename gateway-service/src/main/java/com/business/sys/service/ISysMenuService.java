@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface ISysMenuService {
 
-    public List<SysMenuDto> getAuthMenu(String username);
+    public List<SysMenuDto> getAuthMenu(String username, String parentId, String type);
 
-    public List<SysMenu> getMenu(SysMenu sysMenu);
+    public List<SysMenu> getAllMenu(SysMenu sysMenu);
 
     public void saveMenu(SysMenu sysMenu);
 
