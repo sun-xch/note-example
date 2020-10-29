@@ -12,11 +12,11 @@ public interface SysMenuDao {
 
     public List<SysMenuDto> getAuthMenu(SysMenuDto sysMenuDto);
 
-    public List<SysMenu> getAllMenu(SysMenu sysMenu);
+    public List<SysMenuDto> getMenuAndBindRole(SysMenuDto sysMenuDto);
 
     public int insertMenu(SysMenu sysMenu);
 
     public int updateMenu(SysMenu sysMenu);
 
-    public List<SysMenuDto> getMenuAndBindRole(SysMenuDto sysMenuDto);
+
 }

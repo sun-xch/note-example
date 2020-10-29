@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.business.sys.dao.SysRoleMenuDao">
+
+    <delete id="deleteByRoleId" parameterType="java.lang.String" >
+        delete from sys_role_menu
+        where role_id = #{roleId,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="batchInsert" parameterType="list" >
+        insert into sys_role_menu (uuid,role_id,menu_id)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.uuid},#{item.roleId},#{item.menuId})
+        </foreach>
+    </insert>
+
+</mapper>

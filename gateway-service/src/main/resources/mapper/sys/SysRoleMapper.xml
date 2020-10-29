@@ -34,4 +34,69 @@
         </where>
     </select>
 
+    <insert id="insertRole" parameterType="com.business.sys.entity.SysRole">
+		INSERT INTO sys_role (
+			uuid,
+            role_code,
+            role_name,
+            role_desc,
+            sort,
+            create_time,
+            create_user_uuid,
+            update_time,
+            update_user_uuid
+		)
+		VALUES
+			(
+				#{uuid},
+				#{roleCode},
+				#{roleName},
+				#{roleDesc},
+				#{sort},
+				#{createTime},
+				#{createUserUuid},
+				#{updateTime},
+				#{updateUserUuid}
+			)
+	</insert>
+
+    <update id="selectiveUpdateRole" parameterType="com.business.sys.entity.SysRole">
+		UPDATE sys_role
+        <set >
+            <if test="uuid != null" >
+                uuid = #{uuid},
+            </if>
+            <if test="roleCode != null" >
+                role_code = #{roleCode},
+            </if>
+            <if test="roleName != null" >
+                role_name = #{roleName},
+            </if>
+            <if test="roleDesc != null" >
+                role_desc = #{roleDesc},
+            </if>
+            <if test="sort != null" >
+                sort = #{sort},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime},
+            </if>
+            <if test="createUserUuid != null" >
+                create_user_uuid = #{createUserUuid},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime},
+            </if>
+            <if test="updateUserUuid != null" >
+                update_user_uuid = #{updateUserUuid},
+            </if>
+        </set>
+        WHERE uuid = #{uuid}
+	</update>
+
+    <delete id="deleteById" parameterType="java.lang.String" >
+        delete from sys_role
+        where uuid = #{uuid,jdbcType=VARCHAR}
+    </delete>
+
 </mapper>

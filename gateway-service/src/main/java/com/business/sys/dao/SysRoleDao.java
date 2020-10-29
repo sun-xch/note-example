@@ -11,4 +11,10 @@ public interface SysRoleDao {
     public List<String> getRoleIdByUserId(String uuid);
 
     public List<SysRole> getRoleList(SysRole sysRole);
+
+    public int insertRole(SysRole sysRole);
+
+    public int selectiveUpdateRole(SysRole sysRole);
+
+    public int deleteById(String uuid);
 }

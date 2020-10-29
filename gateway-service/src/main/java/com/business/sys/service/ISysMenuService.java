@@ -9,9 +9,7 @@ public interface ISysMenuService {
 
     public List<SysMenuDto> getAuthMenu(String username, String parentId, String type);
 
-    public List<SysMenu> getAllMenu(SysMenu sysMenu);
+    public List<SysMenuDto> getMenuAndBindRole(SysMenuDto sysMenuDto, String parentId);
 
     public void saveMenu(SysMenu sysMenu);
-
-    public List<SysMenuDto> getMenuAndBindRole(SysMenuDto sysMenuDto);
 }

@@ -28,6 +28,21 @@ public class SysMenuServiceImpl implements ISysMenuService {
     @Resource
     private SysMenuDao sysMenuDao;
 
+    //递归List返回树状结构
+    public List<SysMenuDto> menuListToTree(List<SysMenuDto> menuList, String parentId){
+        List<SysMenuDto> resultList = new ArrayList<>();
+        for(SysMenu sysMenu : menuList){
+            SysMenuDto sysMenuDto = new SysMenuDto();
+            BeanUtils.copyProperties(sysMenu,sysMenuDto);
+            if(parentId.equals(sysMenu.getMenuPid())){
+                List<SysMenuDto> sysMenuDtoList = menuListToTree(menuList, sysMenu.getUuid());
+                sysMenuDto.setChildMenu(sysMenuDtoList);
+                resultList.add(sysMenuDto);
+            }
+        }
+        return resultList;
+    }
+
     @Override
     public List<SysMenuDto> getAuthMenu(String username, String parentId, String type) {
         //1.根据username获取用户主键
@@ -45,26 +60,11 @@ public class SysMenuServiceImpl implements ISysMenuService {
         return sysMenuDtoList;
     }
 
-    //递归List返回树状结构
-    public List<SysMenuDto> menuListToTree(List<SysMenuDto> menuList, String parentId){
-        List<SysMenuDto> resultList = new ArrayList<>();
-        for(SysMenu sysMenu : menuList){
-            SysMenuDto sysMenuDto = new SysMenuDto();
-            BeanUtils.copyProperties(sysMenu,sysMenuDto);
-            if(parentId.equals(sysMenu.getMenuPid())){
-                List<SysMenuDto> sysMenuDtoList = menuListToTree(menuList, sysMenu.getUuid());
-                sysMenuDto.setChildMenu(sysMenuDtoList);
-                resultList.add(sysMenuDto);
-            }
-        }
-        return resultList;
-    }
-
     @Override
-    public List<SysMenu> getAllMenu(SysMenu sysMenu) {
-        //默认只查询非按钮
-        sysMenu.setType("3");
-        return sysMenuDao.getAllMenu(sysMenu);
+    public List<SysMenuDto> getMenuAndBindRole(SysMenuDto sysMenuDto, String parentId) {
+        List<SysMenuDto> menuAndBindRole = sysMenuDao.getMenuAndBindRole(sysMenuDto);
+        List<SysMenuDto> sysMenuDtoList = menuListToTree(menuAndBindRole, parentId);
+        return sysMenuDtoList;
     }
 
     @Override
@@ -80,10 +80,4 @@ public class SysMenuServiceImpl implements ISysMenuService {
         }
     }
 
-    @Override
-    public List<SysMenuDto> getMenuAndBindRole(SysMenuDto sysMenuDto) {
-        List<SysMenuDto> menuAndBindRole = sysMenuDao.getMenuAndBindRole(sysMenuDto);
-        List<SysMenuDto> sysMenuDtoList = menuListToTree(menuAndBindRole, "0");
-        return sysMenuDtoList;
-    }
 }

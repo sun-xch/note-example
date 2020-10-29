@@ -1,6 +1,7 @@
 package com.business.sys.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class SysRole implements Serializable {
@@ -17,7 +18,7 @@ public class SysRole implements Serializable {
 
     private String sort;
 
-    private Date createTime;
+    private LocalDateTime createTime;
 
     private String createUserUuid;
 
@@ -65,11 +66,11 @@ public class SysRole implements Serializable {
         this.sort = sort;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
