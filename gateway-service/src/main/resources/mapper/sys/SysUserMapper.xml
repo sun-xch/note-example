@@ -52,4 +52,41 @@
             OR phone = #{phone})
     </insert>
 
+    <update id="selectiveUpdateUser" parameterType="com.business.sys.entity.SysUser">
+        UPDATE sys_user
+        <set >
+            <if test="roleId != null" >
+                role_id = #{roleId},
+            </if>
+            <if test="orgId != null" >
+                org_id = #{orgId},
+            </if>
+            <if test="mail != null" >
+                mail = #{mail},
+            </if>
+            <if test="name != null" >
+                name = #{name},
+            </if>
+            <if test="sex != null" >
+                sex = #{sex},
+            </if>
+            <if test="avatar != null" >
+                avatar = #{avatar},
+            </if>
+            <if test="remarks != null" >
+                remarks = #{remarks},
+            </if>
+            <if test="enabled != null" >
+                enabled = #{enabled},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime},
+            </if>
+            <if test="updateUserUuid != null" >
+                update_user_uuid = #{updateUserUuid},
+            </if>
+        </set>
+        WHERE uuid = #{uuid}
+    </update>
+
 </mapper>

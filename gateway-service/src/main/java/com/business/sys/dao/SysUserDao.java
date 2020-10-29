@@ -14,4 +14,6 @@ public interface SysUserDao {
     public List<SysUserDto> getUserList(SysUserDto sysUserDto);
 
     public int addSingleUser(SysUser sysUser);
+
+    public int selectiveUpdateUser(SysUser sysUser);
 }

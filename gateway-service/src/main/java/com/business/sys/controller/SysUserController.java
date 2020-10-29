@@ -7,6 +7,7 @@ import com.business.sys.dto.SysUserDto;
 import com.business.sys.entity.SysUser;
 import com.business.sys.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +44,12 @@ public class SysUserController {
     @RequestMapping("/addSingleUser")
     public RestResult addSingleUser(@RequestBody SysUserDto sysUserDto){
         sysUserService.addSingleUser(sysUserDto);
+        return RestResult.success("");
+    }
+
+    @PostMapping("/updateUser")
+    public RestResult updateUser(@RequestBody SysUser sysUser){
+        sysUserService.selectiveUpdateUser(sysUser);
         return RestResult.success("");
     }
 

@@ -20,7 +20,7 @@ public class MyUserDetailsService implements UserDetailsService {
         //加载用户信息
         UserDetailsDto userDetailsDto = userDetailsDao.selectUserByUsername(username);
 
-        userDetailsDto.setEnabled(true);
+        //userDetailsDto.setEnabled(true);
 
         return userDetailsDto;
     }

@@ -12,4 +12,6 @@ public interface ISysUserService {
     public RestTableResult<SysUserDto> getUserList(SysUserDto sysUserDto);
 
     public void addSingleUser(SysUser sysUser);
+
+    public void selectiveUpdateUser(SysUser sysUser);
 }

@@ -5,7 +5,8 @@
     <select id="selectUserByUsername" resultType="com.business.security.business.dto.UserDetailsDto">
         SELECT
             username as username,
-            password as password
+            password as password,
+            enabled as enabled
         FROM
             sys_user
         WHERE

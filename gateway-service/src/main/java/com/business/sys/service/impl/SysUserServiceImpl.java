@@ -43,4 +43,9 @@ public class SysUserServiceImpl implements ISysUserService {
         System.out.println(i);
     }
 
+    @Override
+    public void selectiveUpdateUser(SysUser sysUser) {
+        sysUserDao.selectiveUpdateUser(sysUser);
+    }
+
 }
