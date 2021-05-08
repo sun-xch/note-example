@@ -5,13 +5,25 @@ import com.alibaba.otter.canal.client.CanalConnectors;
 import com.alibaba.otter.canal.common.utils.AddressUtils;
 import com.alibaba.otter.canal.protocol.CanalEntry;
 import com.alibaba.otter.canal.protocol.Message;
+import com.example.handler.MessageHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.net.InetSocketAddress;
 import java.util.List;
 
 @Slf4j
+@Component
 public class CanalClient {
+
+    private MessageHandler messageHandler;
+
+    public CanalClient(MessageHandler messageHandler) {
+        this.messageHandler = messageHandler;
+    }
 
     private volatile boolean running = false;
 
@@ -56,6 +68,10 @@ public class CanalClient {
                     // System.out.printf("message[batchId=%s,size=%s] \n", batchId, size);
                     //如果有数据,处理数据
                     printEntry(message.getEntries());
+                    List<CanalEntry.Entry> entries = message.getEntries();
+                    if(!CollectionUtils.isEmpty(entries)){
+                        messageHandler.execute(entries);
+                    }
                 }
                 // 进行 batch id 的确认。确认之后，小于等于此 batchId 的 Message 都会被确认。
                 connector.ack(batchId); // 提交确认

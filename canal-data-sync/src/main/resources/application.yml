@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+      enable: true
+      host: localhost
+      port: 27017
+      username: noteexample
+      password: noteexample
+      database: noteExample
+      auto-index-creation: false
