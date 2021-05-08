@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.business.mapper.UserInfoMapper">
+
+    <select id="getAllUserInfo" resultType="com.example.business.entity.UserInfo">
+        SELECT
+            id,
+            user_id,
+            login_name,
+            nick_name,
+            real_name,
+            phone,
+            mail,
+            sex,
+            birthday,
+            age,
+            avatar,
+            address,
+            work,
+            native_place,
+            credit_rating,
+            remarks,
+            flag,
+            edit_time,
+            edit_user_id,
+            edit_user_name,
+            create_time,
+            create_user_id,
+            create_user_name
+        FROM
+        user_info
+        <where>
+            <if test="flag != null and flag != ''">
+                and flag = #{flag}
+            </if>
+        </where>
+    </select>
+
+</mapper>
