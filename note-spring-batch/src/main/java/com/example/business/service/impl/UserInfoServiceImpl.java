@@ -9,7 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -28,6 +30,17 @@ public class UserInfoServiceImpl implements IUserInfoService {
         PageHelper.startPage(userInfo.getPageNo(),userInfo.getPageSize()).setOrderBy("phone");
         List<UserInfo> list = userInfoMapper.getAllUserInfo(userInfo);
         return new PageInfo<>(list);
+    }
+
+    @Override
+    public void batchInsert(List<UserInfo> list) {
+        for (UserInfo userInfo : list){
+            userInfo.setId(UUID.randomUUID().toString().replace("-", ""));
+            userInfo.setCreateTime(LocalDateTime.now());
+            userInfo.setCreateUserId(userInfo.getId());
+            userInfo.setCreateUserName(userInfo.getRealName());
+        }
+        userInfoMapper.batchInsert(list);
     }
 
 }

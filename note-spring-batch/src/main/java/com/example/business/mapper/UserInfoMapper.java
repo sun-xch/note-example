@@ -10,4 +10,6 @@ public interface UserInfoMapper {
 
     List<UserInfo> getAllUserInfo(UserInfo userInfo);
 
+    void batchInsert(List<UserInfo> list);
+
 }

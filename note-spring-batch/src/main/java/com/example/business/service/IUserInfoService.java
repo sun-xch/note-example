@@ -10,4 +10,6 @@ public interface IUserInfoService {
     List<UserInfo> getAllUserInfo(UserInfo userInfo);
 
     PageInfo getTableByCondition(UserInfo userInfo);
+
+    void batchInsert(List<UserInfo> list);
 }
