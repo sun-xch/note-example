@@ -2,11 +2,19 @@ server:
   port: 8084
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/note_example?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: root
+  batch:
+    job:
+      enabled: false
+#  batch:
+#    job:
+#      names: parentJob5
 
 #mybatis\u7684\u76F8\u5173\u914D\u7F6E
 mybatis:
@@ -27,3 +35,5 @@ pagehelper:
 logging:
   level:
     com.example.business.mapper : debug
+
+

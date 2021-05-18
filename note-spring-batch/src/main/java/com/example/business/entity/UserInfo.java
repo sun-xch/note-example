@@ -1,12 +1,18 @@
 package com.example.business.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserInfo extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 7633838028808016626L;

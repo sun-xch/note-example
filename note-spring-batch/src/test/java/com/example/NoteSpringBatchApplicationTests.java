@@ -5,7 +5,11 @@ import com.example.business.service.IUserInfoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.io.ClassPathResource;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +29,7 @@ class NoteSpringBatchApplicationTests {
 
         List<UserInfo> list = new ArrayList<>();
 
-        for (int i=0;i<10;i++){
+        for (int i=0;i<1000;i++){
             UserInfo userInfo = new UserInfo();
             userInfo.setLoginName("test"+i);
             userInfo.setNickName("test"+i);
@@ -78,4 +82,14 @@ class NoteSpringBatchApplicationTests {
         return result;
     }
 
+    @Test
+    public void test(){
+        List<String> list = new ArrayList<>();
+        list.add("php");
+        list.add("java");
+        list.add("js");
+        list.add("mysql");
+        list.add("docker");
+        System.out.println(list.remove(0));
+    }
 }
