@@ -13,17 +13,17 @@ public class RetryItemWriter implements ItemWriter<String> {
     @Override
     public void write(List<? extends String> items) throws Exception {
         for (String item : items) {
-            if(retry && item.indexOf("0") >= 0){
-//                if(item.equals("10")){
-//                    retry = true;
-//                }else{
-//                    retry = false;
-//                }
-                retry = false;
+            if(retry && item.equals("10")){
+                if(item.equals("10")){
+                    retry = true;
+                }else{
+                    retry = false;
+                }
+                //retry = false;
                 System.out.println("Writing of item " + item + " failed");
                 throw new RuntimeException(item + "写入异常");
             }else{
-                retry = true;
+                //retry = true;
                 System.out.println("writing item " + item);
             }
         }
