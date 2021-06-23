@@ -29,7 +29,7 @@ class NoteSpringBatchApplicationTests {
 
         List<UserInfo> list = new ArrayList<>();
 
-        for (int i=0;i<1000;i++){
+        for (int i=0;i<5000000;i++){
             UserInfo userInfo = new UserInfo();
             userInfo.setLoginName("test"+i);
             userInfo.setNickName("test"+i);
@@ -91,5 +91,102 @@ class NoteSpringBatchApplicationTests {
         list.add("mysql");
         list.add("docker");
         System.out.println(list.remove(0));
+    }
+
+    @Test
+    public void parallelMarkData() throws InterruptedException {
+        long start = System.currentTimeMillis();
+        Thread insertThread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                createData(0,500000);
+            }
+        });
+
+        Thread insertThread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                createData(500000,1000000);
+            }
+        });
+
+        Thread insertThread3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                createData(1000000,1500000);
+            }
+        });
+
+        Thread insertThread4 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                createData(1500000,2000000);
+            }
+        });
+
+//        Thread insertThread5 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                createData(2000000,3000000);
+//            }
+//        });
+
+        insertThread1.start();
+        insertThread2.start();
+        insertThread3.start();
+        insertThread4.start();
+//        insertThread5.start();
+        insertThread1.join();
+        insertThread2.join();
+        insertThread3.join();
+        insertThread4.join();
+//        insertThread5.join();
+
+        long end = System.currentTimeMillis();
+
+        System.out.println("start:" + start +",end:" + end);
+        System.out.println(end - start);
+
+    }
+
+    private void createData(int index, int end){
+
+        List<UserInfo> list = new ArrayList<>();
+
+        for (int i=index;i<end;i++){
+            UserInfo userInfo = new UserInfo();
+            userInfo.setLoginName("test"+i);
+            userInfo.setNickName("test"+i);
+            userInfo.setRealName("测试用户"+i);
+            String s = autoGenericCode(String.valueOf(i), 8);
+            userInfo.setPhone("130"+s);
+            userInfo.setMail(s+"@123.com");
+            userInfo.setSex("1");
+            userInfo.setBirthday(LocalDate.now());
+            userInfo.setAge(10);
+            userInfo.setAvatar("www.123123serfsfdswesf443fs4353fd"+i+".com");
+            userInfo.setAddress("测试用户"+i+"的地址信息");
+            userInfo.setWork("Java");
+            userInfo.setNativePlace("山东");
+            userInfo.setCreditRating("10");
+            userInfo.setRemarks("测试用户"+i+"的备注信息");
+            userInfo.setFlag("T");
+
+            list.add(userInfo);
+
+            if(i % 500 == 0){
+
+                userInfoService.batchInsert(list);
+
+                list.clear();
+            }
+
+
+        }
+
+        if(!list.isEmpty()){
+            userInfoService.batchInsert(list);
+        }
+
     }
 }
