@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo4.dispatch.dao.DispatchOrderDao">
+
+    <insert id="insertDispatchOrder" parameterType="com.example.demo4.entity.RabbitmqDispacherOrder">
+        INSERT INTO rabbitmq_dispacher_order ( dispatch_id, order_id, user_id, STATUS, order_content, create_time )
+        VALUES
+	    ( #{dispatchId}, #{orderId}, #{userId}, #{status}, #{orderContent}, #{createTime} )
+    </insert>
+
+</mapper>

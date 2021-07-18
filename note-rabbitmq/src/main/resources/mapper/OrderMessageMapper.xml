@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo4.order.dao.OrderMessgaeDao">
+
+    <insert id="insertOrderMessage" parameterType="com.example.demo4.entity.RabbitmqOrderMessage">
+        INSERT INTO rabbitmq_order_message ( order_id, status, order_content, unique_id )
+        VALUES
+	    ( #{orderId}, #{status}, #{orderContent}, #{uniqueId} )
+    </insert>
+
+    <update id="updateOrderMessage" parameterType="com.example.demo4.entity.RabbitmqOrderMessage">
+		UPDATE rabbitmq_order_message
+		SET status = #{status}
+		WHERE
+			order_id = #{orderId}
+	</update>
+
+</mapper>

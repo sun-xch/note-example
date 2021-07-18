@@ -2,9 +2,33 @@ server:
   port: 8086
 
 Spring:
+  main:
+    allow-bean-definition-overriding: true
   rabbitmq:
     username: root
     password: root
     virtual-host: /
     host: localhost
     port: 5672
+    publisher-confirm-type: correlated  #确认机制
+    listener:
+      simple:
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 2000ms
+        acknowledge-mode: manual  #这里是开启手动ack,让程序去控制消息的重发，删除，转移
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/note_example?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+
+#mybatis的相关配置
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.business.security.dto
+  #开启驼峰命名
+  configuration:
+    map-underscore-to-camel-case: true

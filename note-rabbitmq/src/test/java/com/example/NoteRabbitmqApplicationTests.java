@@ -3,6 +3,8 @@ package com.example;
 import com.example.demo1.service.FanoutProductService;
 import com.example.demo2.service.DirectOrderProductService;
 import com.example.demo3.service.TopicOrderProductService;
+import com.example.demo4.order.service.OrderLocalMessageService;
+import com.example.demo4.order.service.OrderService;
 import com.example.ttl.message.service.TtlMessageProductService;
 import com.example.ttl.queue.service.TtlQueueOrderProductService;
 import org.junit.jupiter.api.Test;
@@ -26,6 +28,12 @@ class NoteRabbitmqApplicationTests {
 
     @Autowired
     private TtlMessageProductService ttlMessageProductService;
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private OrderLocalMessageService orderLocalMessageService;
 
     @Test
     void contextLoads() {
@@ -71,4 +79,15 @@ class NoteRabbitmqApplicationTests {
         ttlMessageProductService.makeOrder("1","1",1);
     }
 
+    @Test
+    public void orderCreateTest() throws Exception {
+        String id = "1";
+        orderService.insertOrder(id);
+    }
+
+    @Test
+    public void orderMessageTest() throws Exception {
+        String id = "1";
+        orderLocalMessageService.insertOrder(id);
+    }
 }
