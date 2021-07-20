@@ -25,6 +25,12 @@ public class OrderMqService {
     @PostConstruct
     public void regCallback(){
         rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
+            /**
+             *
+             * @param correlationData 对象内部只有一个 id 属性，用来表示当前消息的唯一性。
+             * @param ack 消息投递到broker 的状态，true表示成功。
+             * @param cause 表示投递失败的原因。
+             */
             @Override
             public void confirm(CorrelationData correlationData, boolean ack, String cause) {
                 System.out.println("cause:"+cause);
