@@ -17,7 +17,7 @@ public class OrderLocalMessageConsumerService {
     private DispatchOrderService dispatchOrderService;
 
     /**
-     * 解决消息重试的几种方案
+     * 解决消息重试的几种方案(可靠消费)
      * 1.控制重发次数
      * 2.try-catch + 手动ack
      * 3.try-catch + 手动ack + 死信队列

@@ -19,6 +19,7 @@ public class OrderMqService {
     private OrderMessgaeDao orderMessgaeDao;
 
     /**
+     * 可靠生产
      * @PostConstruct该注解被用来修饰一个非静态的void的方法，被@PostConstruct修饰的方法会在服务器加载servlet的时候运行，并且只会被服务器执行一次，
      * @PostConstruct在构造函数之后执行，init()方法之前执行
      */
@@ -41,6 +42,11 @@ public class OrderMqService {
                     System.out.println("mq队列应答失败，id是：" + orderId);
                 }
 
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 RabbitmqOrderMessage rabbitmqOrderMessage = new RabbitmqOrderMessage();
                 rabbitmqOrderMessage.setOrderId(orderId);
                 rabbitmqOrderMessage.setStatus("1");
